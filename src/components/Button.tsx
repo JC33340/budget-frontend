@@ -8,7 +8,10 @@ type ButtonType = {
 
 const Button = ({ text, handleClick, className }: ButtonType) => {
     return (
-        <button className={className} onClick={handleClick}>
+        <button
+            className={`p-2 border-2 border-blue rounded-md bg-blue text-white hover:bg-white hover:text-blue transition-all ease-in-out ${className}`}
+            onClick={handleClick}
+        >
             {text}
         </button>
     );
