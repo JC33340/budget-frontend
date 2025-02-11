@@ -1,6 +1,24 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { validateToken } from '../utils/auth.utils';
 
 const AuthLayout = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const jwt = localStorage.getItem('budgeter_jwt');
+
+        //if token does not exist
+        if (!jwt) return;
+
+        const checkToken = async () => {
+            const isValid = await validateToken(jwt);
+            if (isValid) navigate('/');
+        };
+
+        checkToken();
+    }, []);
+
     return (
         <div className="grid grid-cols-2 h-full w-full border-2 border-light-blue rounded-lg">
             <div className="flex items-center justify-center">

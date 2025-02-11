@@ -1,11 +1,12 @@
 import InputField from '../components/InputField';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { checkDataEmpty } from '../utils/auth.utils';
 
 type signUpInfoType = {
     email: string;
-    username: string;
+    name: string;
     password: string;
     passwordConfirmation: string;
 };
@@ -14,10 +15,16 @@ const SignUp = () => {
     //state to store form information
     const [signUpInfo, setSignUpInfo] = useState<signUpInfoType>({
         email: '',
-        username: '',
+        name: '',
         password: '',
         passwordConfirmation: '',
     });
+
+    //navigation
+    const navigate = useNavigate();
+
+    //errors for display
+    const [error, setError] = useState<string>();
 
     //handling form changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +39,20 @@ const SignUp = () => {
     //handle button sign up
     const handleClick = async () => {
         try {
+            //checking data validity
+
+            //checking if any fields are empty
+            const { isEmpty, field } = checkDataEmpty(signUpInfo);
+            if (isEmpty) {
+                throw new Error(`${field} is empty`);
+            }
+
+            //checking if password match
+            if (signUpInfo.password != signUpInfo.passwordConfirmation) {
+                throw new Error('Passwords do not match');
+            }
+
+            //sending data to backend for signup
             const signup = await fetch(
                 `${import.meta.env.VITE_API}/auth/signup`,
                 {
@@ -41,9 +62,16 @@ const SignUp = () => {
                 }
             );
             const signupParsed = await signup.json();
-            console.log(signupParsed);
+            if (!signup.ok) {
+                throw new Error(signupParsed.message);
+            }
+            localStorage.setItem('budgeter_jwt', signupParsed.jwt);
+            navigate('/auth/login');
         } catch (e) {
             console.log(e);
+            if (e instanceof Error) {
+                setError(e.message);
+            }
         }
     };
 
@@ -58,9 +86,9 @@ const SignUp = () => {
                     handleChange={handleChange}
                 />
                 <InputField
-                    placeholder="Username"
-                    name="username"
-                    value={signUpInfo.username}
+                    placeholder="Name"
+                    name="name"
+                    value={signUpInfo.name}
                     handleChange={handleChange}
                 />
                 <InputField
@@ -75,8 +103,10 @@ const SignUp = () => {
                     name="passwordConfirmation"
                     value={signUpInfo.passwordConfirmation}
                     handleChange={handleChange}
+                    type="password"
                 />
             </div>
+            {error && <p className="text-red">* {error} *</p>}
             <Button
                 text="Create account"
                 handleClick={handleClick}

@@ -2,17 +2,26 @@ import React, { useState } from 'react';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { checkDataEmpty } from '../utils/auth.utils';
+import { useNavigate } from 'react-router-dom';
 
 type LoginInfoType = {
-    username: string;
+    email: string;
     password: string;
 };
 
 const Login = () => {
+    //storing form information for login
     const [loginInfo, setLoginInfo] = useState<LoginInfoType>({
-        username: '',
+        email: '',
         password: '',
     });
+
+    //navigation
+    const navigate = useNavigate();
+
+    //storing error message
+    const [error, setError] = useState<string>();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoginInfo((prev) => {
@@ -24,16 +33,46 @@ const Login = () => {
     };
 
     const handleClick = async () => {
-        console.log(import.meta.env.VITE_API);
+        //check data validity
+        try {
+            const { isEmpty, field } = checkDataEmpty(loginInfo);
+            if (isEmpty) {
+                throw new Error(`${field} is empty`);
+            }
+            const login = await fetch(
+                `${import.meta.env.VITE_API}/auth/login`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                    },
+                    body: JSON.stringify({
+                        email: loginInfo.email,
+                        password: loginInfo.password,
+                    }),
+                }
+            );
+            const loginParsed = await login.json();
+            if (!login.ok) {
+                throw new Error(loginParsed.message);
+            }
+            localStorage.setItem('budgeter_jwt', loginParsed.jwt);
+            navigate('/');
+        } catch (e) {
+            console.log(e);
+            if (e instanceof Error) {
+                setError(e.message);
+            }
+        }
     };
 
     return (
         <div className="flex flex-col gap-y-4 items-center">
             <span className="text-blue font-semibold text-2xl">Log in</span>
             <InputField
-                placeholder="Username / E-mail"
-                value={loginInfo.username}
-                name="username"
+                placeholder="E-mail"
+                value={loginInfo.email}
+                name="email"
                 handleChange={handleChange}
             ></InputField>
             <InputField
@@ -41,7 +80,9 @@ const Login = () => {
                 value={loginInfo.password}
                 name="password"
                 handleChange={handleChange}
+                type="password"
             ></InputField>
+            {error && <p className="text-red">* {error} *</p>}
             <Button
                 text="Login"
                 handleClick={handleClick}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 type ButtonType = {
     text: string;
     handleClick: () => void;
