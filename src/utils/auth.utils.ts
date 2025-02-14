@@ -9,6 +9,7 @@ export const checkDataEmpty = (obj: {}) => {
 };
 
 export const validateToken = async (jwt: string) => {
+    try{
     const isAuth = await fetch(`${import.meta.env.VITE_API}/auth/checkAuth`, {
         headers: {
             Authorization: `Bearer ${jwt}`,
@@ -18,4 +19,10 @@ export const validateToken = async (jwt: string) => {
         return false;
     }
     return true;
+    }catch(e){
+        if(e instanceof Error){
+            console.error(e)
+        }
+        return false
+    }
 };
