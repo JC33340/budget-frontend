@@ -10,7 +10,6 @@ type resetPasswordFormType = {
 };
 
 const ResetPassword = () => {
-
     //storing form information
     const [formInfo, setFormInfo] = useState<resetPasswordFormType>({
         password: '',
@@ -111,9 +110,17 @@ const ResetPassword = () => {
                     />
                 </div>
             ) : (
-                <div className='flex flex-col items-center gap-y-4 text-center'>
-                    <p className='text-2xl font-semibold text-blue'>Password has been successfully reset</p>
-                    <p className='text-dark-gray'>Click <Link to='/auth/login' className='text-blue underline'>here</Link> to return to login page</p>
+                <div className="flex flex-col items-center gap-y-4 text-center">
+                    <p className="text-2xl font-semibold text-blue">
+                        Password has been successfully reset
+                    </p>
+                    <p className="text-dark-gray">
+                        Click{' '}
+                        <Link to="/auth/login" className="text-blue underline">
+                            here
+                        </Link>{' '}
+                        to return to login page
+                    </p>
                 </div>
             )}
         </>

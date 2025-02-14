@@ -90,7 +90,7 @@ const ForgotPassword = () => {
                         handleClick={handleClick}
                         className="w-full"
                     />
-                    <Link to='/auth/login' className="text-blue underline">
+                    <Link to="/auth/login" className="text-blue underline">
                         Already have an account?
                     </Link>
                 </div>

@@ -9,20 +9,23 @@ export const checkDataEmpty = (obj: {}) => {
 };
 
 export const validateToken = async (jwt: string) => {
-    try{
-    const isAuth = await fetch(`${import.meta.env.VITE_API}/auth/checkAuth`, {
-        headers: {
-            Authorization: `Bearer ${jwt}`,
-        },
-    });
-    if (!isAuth.ok) {
-        return false;
-    }
-    return true;
-    }catch(e){
-        if(e instanceof Error){
-            console.error(e)
+    try {
+        const isAuth = await fetch(
+            `${import.meta.env.VITE_API}/auth/checkAuth`,
+            {
+                headers: {
+                    Authorization: `Bearer ${jwt}`,
+                },
+            }
+        );
+        if (!isAuth.ok) {
+            return false;
         }
-        return false
+        return true;
+    } catch (e) {
+        if (e instanceof Error) {
+            console.error(e);
+        }
+        return false;
     }
 };
