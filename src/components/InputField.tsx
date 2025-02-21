@@ -3,10 +3,11 @@ import React from 'react';
 type InputFieldType = {
     placeholder: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    value: string;
+    value: string | number | undefined;
     className?: string;
     name: string;
     type?: string;
+    maxLength?: number;
 };
 
 const InputField = ({
@@ -16,6 +17,7 @@ const InputField = ({
     className,
     name,
     type = '',
+    maxLength,
 }: InputFieldType) => {
     return (
         <div className="flex flex-col">
@@ -27,6 +29,7 @@ const InputField = ({
                 value={value}
                 name={name}
                 type={type}
+                maxLength={maxLength}
             ></input>
         </div>
     );

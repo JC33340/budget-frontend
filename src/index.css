@@ -20,11 +20,14 @@
 }
 
 @theme {
+    --color-lighter-gray: #e4e4e4;
     --color-light-gray: #b4b4b4;
     --color-dark-gray: #8e8e8e;
     --color-blue: #0073e6;
     --color-light-blue: #b3d9ff;
     --color-red: #ff2c2c;
+    --color-dark-red: #b22222;
+    --color-green: #50c878;
 
     --font-roboto-flex: 'Roboto Flex', serif;
 }

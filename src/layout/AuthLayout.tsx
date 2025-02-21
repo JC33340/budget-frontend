@@ -13,7 +13,9 @@ const AuthLayout = () => {
 
         const checkToken = async () => {
             const isValid = await validateToken(jwt);
-            if (isValid) navigate('/');
+            if (isValid) {
+                return navigate('/');
+            }
         };
 
         checkToken();

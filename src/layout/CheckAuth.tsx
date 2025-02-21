@@ -1,10 +1,13 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { validateToken } from '../utils/auth.utils';
+import Header from '../components/Header';
 
 //component to check authentication of user
 const CheckAuth = () => {
     const navigate = useNavigate();
+
+    //function to set email
 
     //checking authentication status via api
     useEffect(() => {
@@ -19,14 +22,21 @@ const CheckAuth = () => {
         const checkAuth = async () => {
             const result = await validateToken(localjwt);
             if (!result) {
-                navigate('/auth/login');
+                return navigate('/auth/login');
             }
         };
 
         checkAuth();
     });
 
-    return <Outlet />;
+    return (
+        <div>
+            <Header />
+            <div className="py-4">
+                <Outlet />
+            </div>
+        </div>
+    );
 };
 
 export default CheckAuth;

@@ -21,6 +21,7 @@ export const validateToken = async (jwt: string) => {
         if (!isAuth.ok) {
             return false;
         }
+
         return true;
     } catch (e) {
         if (e instanceof Error) {

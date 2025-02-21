@@ -8,6 +8,7 @@ import CheckAuth from './layout/CheckAuth';
 import HomePage from './pages/Homepage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Transactions from './pages/Transactions';
 
 function App() {
     return (
@@ -16,6 +17,10 @@ function App() {
                 <Route element={<AppLayout />}>
                     <Route element={<CheckAuth />}>
                         <Route path="/" element={<HomePage />}></Route>
+                        <Route
+                            path="/transactions"
+                            element={<Transactions />}
+                        />
                     </Route>
                     <Route path="/auth" element={<AuthLayout />}>
                         <Route path="login" element={<Login />}></Route>
