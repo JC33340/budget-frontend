@@ -8,8 +8,32 @@ const TransactionLog = () => {
     const transactions = context === null ? [] : context.transactionLogs;
 
     //delete row
-    const deleteRow = (id: number) => {
-        console.log(id);
+    const deleteRow = async (id: number) => {
+        //delete row API
+        //get jwt
+        const localjwt = localStorage.getItem('budgeter_jwt');
+        const deleteRow = await fetch(
+            `${import.meta.env.VITE_API}/transactions/delete-transaction`,
+            {
+                method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localjwt}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    logId: id,
+                }),
+            }
+        );
+        const deleteRowParsed = await deleteRow.json();
+        //handle errors
+        if (!deleteRow.ok) {
+            console.log(deleteRowParsed);
+            return alert('Sorry, something went wrong');
+        }
+
+        //reload window to update information
+        window.location.reload();
     };
 
     return (
@@ -41,11 +65,11 @@ const TransactionLog = () => {
                                                 {row.display_id}
                                             </p>
                                             <p
-                                                className={`border-r-2 border-dark-gray flex items-center justify-center p-2 ${row.value < 0 ? 'text-red' : 'text-green'}`}
+                                                className={`border-r-2 border-dark-gray text-xl font-medium flex items-center justify-center p-2 ${row.value < 0 ? 'text-red' : 'text-green'}`}
                                             >
                                                 {row.value}
                                             </p>
-                                            <p className="border-r-2 border-dark-gray flex items-center justify-center p-2">
+                                            <p className="border-r-2 border-dark-gray flex items-center justify-center p-2 capitalize">
                                                 {row.tag}
                                             </p>
                                             <p className="p-2 flex items-center justify-start">

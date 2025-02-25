@@ -4,7 +4,6 @@ import TransactionLog from '../components/transactions/TransactionLog';
 import { useEffect, useState, createContext } from 'react';
 
 type transactionLogsType = {
-    action: 'add' | 'minus';
     value: number;
     tag: string;
     created_at: string;
@@ -57,7 +56,10 @@ const Transactions = () => {
 
     return (
         <transactionContext.Provider
-            value={{ balance: balance, transactionLogs: transactionLogs }}
+            value={{
+                balance: balance,
+                transactionLogs: transactionLogs,
+            }}
         >
             <div className="flex flex-col items-center gap-y-4">
                 <div className="w-full flex flex-col gap-y-8 items-center">

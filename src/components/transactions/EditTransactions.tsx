@@ -11,7 +11,10 @@ type amountType = {
 
 const EditTransactions = () => {
     //storing number values as string
-    const [amount, setAmount] = useState<amountType>({ amount: '', notes: '' });
+    const [amount, setAmount] = useState<amountType>({
+        amount: '',
+        notes: '',
+    });
 
     //handle options for dropdown
     const [option, setOption] = useState('');
@@ -51,13 +54,41 @@ const EditTransactions = () => {
     };
 
     //handling clicking button
-    const handleClick = () => {
-        const num = Number(amount);
+    const handleClick = async () => {
+        const num = Number(amount.amount);
+
+        //double check that value is a number
         if (Number.isNaN(num)) {
             return alert('Value is not a number');
         }
 
-        console.log(num);
+        //getting jwt
+        const jwt = localStorage.getItem('budgeter_jwt');
+
+        //sending api to add transaction
+        const addTransaction = await fetch(
+            `${import.meta.env.VITE_API}/transactions/add-transaction`,
+            {
+                method: 'POST',
+                headers: {
+                    authorization: `Bearer ${jwt}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: num,
+                    tag: option,
+                    notes: amount.notes,
+                }),
+            }
+        );
+        const addTransactionParsed = await addTransaction.json();
+        //error handling
+        if (!addTransaction.ok) {
+            console.log(addTransactionParsed);
+            return alert('Sorry, something went wrong.');
+        }
+        //reload window to update UI information
+        window.location.reload();
     };
 
     return (
