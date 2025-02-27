@@ -106,28 +106,39 @@ const EditTransactions = () => {
                 day: 'numeric',
                 year: 'numeric',
             });
+
+            const obj = {
+                id: addTransactionParsed.logId,
+                created_at: dateNow,
+                value: num,
+                notes: amount.notes,
+                tag: option,
+            };
+
             let newArr = [...prev];
+            let index;
             //adding index of element in
             for (let i = 0; i < newArr.length; i++) {
-                if (newArr[i][0].created_at === dateNow) {
-                    newArr[i] = [
-                        {
-                            id: addTransactionParsed.logId,
-                            created_at: dateNow,
-                            value: num,
-                            notes: amount.notes,
-                            tag: option,
-                        },
-                        ...newArr[i],
-                    ];
+                if (
+                    newArr[i].length > 0 &&
+                    newArr[i][0].created_at === dateNow
+                ) {
+                    index = i;
                     break;
                 }
             }
+
+            if (index != undefined) {
+                newArr[index] = [obj, ...newArr[index]];
+            } else {
+                newArr = [[obj], ...newArr];
+            }
+
             //reset input elements
-            setAmount({ amount: '', notes: '' });
-            setOption('');
             return newArr;
         });
+        setAmount({ amount: '', notes: '' });
+        setOption('');
     };
 
     return (
@@ -136,23 +147,29 @@ const EditTransactions = () => {
                 <p className="text-3xl text-blue font-medium text-center w-full">
                     Add Transaction
                 </p>
-                <div className="flex gap-x-4 items-end justify-center">
-                    <InputField
-                        placeholder="Amount"
-                        value={amount.amount}
-                        name="amount"
-                        handleChange={handleChange}
-                        className={`${Number(amount.amount) > 0 ? 'text-green' : Number(amount.amount) < 0 ? 'text-red' : 'text-black'}`}
+                <div className="flex flex-col sm:flex-row gap-x-4 gap-y-4 items-start sm:items-end justify-start w-full">
+                    <div className="flex gap-x-4 items-end ">
+                        <InputField
+                            placeholder="Amount"
+                            value={amount.amount}
+                            name="amount"
+                            handleChange={handleChange}
+                            className={`${Number(amount.amount) > 0 ? 'text-green' : Number(amount.amount) < 0 ? 'text-red' : 'text-black'} w-40`}
+                        />
+                        <TagDropdown option={option} setOption={setOption} />
+                    </div>
+                    <Button
+                        text="Add transcation"
+                        className="w-full sm:w-fit"
+                        handleClick={handleClick}
                     />
-                    <TagDropdown option={option} setOption={setOption} />
-                    <Button text="Add transcation" handleClick={handleClick} />
                 </div>
                 <InputField
                     name="notes"
                     placeholder="Notes"
                     handleChange={handleChange}
                     value={amount.notes}
-                    className="w-100"
+                    className="w-60 sm:w-100"
                     maxLength={50}
                 />
             </div>

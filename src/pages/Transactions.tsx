@@ -9,7 +9,7 @@ import {
     Dispatch,
 } from 'react';
 
-type transactionLogsType = {
+export type transactionLogsType = {
     value: number;
     tag: string;
     created_at: string;
@@ -72,7 +72,7 @@ const Transactions = () => {
         >
             <div className="flex flex-col items-center gap-y-4">
                 <div className="w-full flex flex-col gap-y-8 items-center">
-                    <div className="flex gap-x-8 w-full">
+                    <div className="flex flex-col gap-y-8 lg:flex-row gap-x-8 w-full">
                         <OverallBalance />
                         <EditTransactions />
                     </div>

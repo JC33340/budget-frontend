@@ -9,6 +9,7 @@ import HomePage from './pages/Homepage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Transactions from './pages/Transactions';
+import Reports from './pages/Reports';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                             path="/transactions"
                             element={<Transactions />}
                         />
+                        <Route path="/reports" element={<Reports />} />
                     </Route>
                     <Route path="/auth" element={<AuthLayout />}>
                         <Route path="login" element={<Login />}></Route>

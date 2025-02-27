@@ -1,11 +1,32 @@
 import ItemWrapper from '../ItemWrapper';
-import { useContext } from 'react';
-import { transactionContext } from '../../pages/Transactions';
+import { useContext, useState, useEffect } from 'react';
+import {
+    transactionContext,
+    transactionLogsType,
+} from '../../pages/Transactions';
 import { FaTrash } from 'react-icons/fa6';
+import TagDropdown from './TagDropdown';
+import InputField from '../InputField';
 
 const TransactionLog = () => {
     const context = useContext(transactionContext);
     const transactions = context === null ? [] : context.transactionLogs;
+
+    //option for searching
+    const [option, setOption] = useState('');
+
+    //searching informationn
+    const [notes, setNotes] = useState('');
+
+    //search display
+    const [searchDisplay, setSearchDisplay] = useState<transactionLogsType[][]>(
+        []
+    );
+
+    //set search display
+    useEffect(() => {
+        setSearchDisplay([...transactions]);
+    }, [context?.transactionLogs]);
 
     //delete row
     const deleteRow = async (id: number) => {
@@ -43,24 +64,66 @@ const TransactionLog = () => {
         });
     };
 
+    //handling search input change
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNotes(e.target.value);
+    };
+
+    //useEffect to filter information
+    useEffect(() => {
+        let newArr = [...transactions];
+
+        //filter array
+        for (let i = 0; i < newArr.length; i++) {
+            newArr[i] = newArr[i].filter((item) => {
+                if (item.notes.toLowerCase().includes(notes)) {
+                    if (option === '') {
+                        return item;
+                    } else if (item.tag === option) {
+                        return item;
+                    }
+                    return;
+                }
+            });
+        }
+        setSearchDisplay(newArr);
+    }, [option, notes]);
+
     return (
         <ItemWrapper>
             <div className="flex flex-col items-center gap-y-4">
                 <p className="text-3xl text-blue font-medium">
                     Transactions log
                 </p>
+                <div className="flex gap-x-4 items-center">
+                    <p className="text-blue text-2xl h-full font-medium">
+                        Filter:
+                    </p>
+                    <div className="flex items-end gap-x-4">
+                        <TagDropdown option={option} setOption={setOption} />
+                        <InputField
+                            placeholder="Notes"
+                            type="notes"
+                            value={notes}
+                            name="notes"
+                            handleChange={handleChange}
+                        />
+                    </div>
+                </div>
                 <div className="flex flex-col w-full">
-                    <div className="grid grid-cols-3 border-b-2 border-dark-gray text-center">
+                    <div className="grid grid-cols-3 border-b-2 border-dark-gray text-center font-medium">
                         <p className="border-r-2 border-dark-gray">Amount</p>
                         <p className="border-r-2 border-dark-gray">Tag</p>
                         <p>Notes</p>
                     </div>
-                    {transactions?.map((item, i) => {
+                    {searchDisplay?.map((item, i) => {
                         return (
                             <div key={i}>
-                                <div className="flex bg-light-gray font-medium text-white items-end justify-end rounded-sm py-1 px-2">
-                                    <p>{item[0].created_at}</p>
-                                </div>
+                                {item.length > 0 && (
+                                    <div className="flex bg-light-gray font-medium text-white items-end justify-end rounded-sm py-1 px-2">
+                                        <p>{item[0].created_at}</p>
+                                    </div>
+                                )}
                                 {item.map((row, j) => {
                                     return (
                                         <div

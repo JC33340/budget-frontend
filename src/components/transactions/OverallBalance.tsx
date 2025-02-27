@@ -9,13 +9,15 @@ const OverallBalance = () => {
     const balance = context === null ? 0 : context.balance;
     return (
         <ItemWrapper>
-            <div className="flex flex-col items-center justify-center gap-y-4 h-full">
+            <div className="flex flex-col items-center justify-start gap-y-4 h-full">
                 <p className="text-3xl text-blue font-medium">Balance:</p>
-                <p
-                    className={`${balance < 0 ? 'text-red' : 'text-green'} text-6xl`}
-                >
-                    £ {(Math.round(balance * 100) / 100).toFixed(2)}
-                </p>
+                <div className="flex items-center justify-center h-full">
+                    <p
+                        className={`${balance < 0 ? 'text-red' : 'text-green'} text-6xl`}
+                    >
+                        £ {(Math.round(balance * 100) / 100).toFixed(2)}
+                    </p>
+                </div>
             </div>
         </ItemWrapper>
     );

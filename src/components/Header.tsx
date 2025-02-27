@@ -1,5 +1,6 @@
 import HeaderButton from './HeaderButton';
 import { Link } from 'react-router-dom';
+import HeaderDropdown from './HeaderDropdown';
 
 const Header = () => {
     return (
@@ -7,12 +8,12 @@ const Header = () => {
             <Link to="/">
                 <p className="text-white text-2xl font-semibold">Budgeter</p>
             </Link>
-            <div className="flex items-center gap-x-6">
+            <div className="hidden md:flex items-center gap-x-6">
                 <HeaderButton href="/transactions" text="Transactions" />
                 <HeaderButton href="/reports" text="Reports" />
                 <HeaderButton href="/settings" text="Settings" />
                 <button
-                    className="text-white bg-dark-red p-2 rounded-md font-semibold"
+                    className="text-white bg-dark-red p-2 rounded-md font-semibold cursor-pointer"
                     onClick={() => {
                         localStorage.clear();
                         return window.location.reload();
@@ -21,6 +22,7 @@ const Header = () => {
                     Logout
                 </button>
             </div>
+            <HeaderDropdown />
         </header>
     );
 };

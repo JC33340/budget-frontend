@@ -55,6 +55,15 @@ const TagDropdown = ({ option, setOption }: TagDropdownType) => {
             </button>
             {!hidden && (
                 <div className="absolute bg-white z-20 border-2 border-dark-gray rounded-lg capitalize h-80 overflow-scroll overflow-x-hidden">
+                    <p
+                        className="py-2 px-4 border-t-2 border-dark-gray cursor-pointer hover:bg-lighter-gray transition-colors ease-in-out"
+                        onClick={() => {
+                            setOption('');
+                            return setHidden(true);
+                        }}
+                    >
+                        No tag
+                    </p>
                     {Object.entries(optionsObj).map((item, i) => {
                         return (
                             <div key={i}>
