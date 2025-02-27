@@ -1,8 +1,9 @@
 import ItemWrapper from '../ItemWrapper';
 import InputField from '../InputField';
 import Button from '../Button';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import TagDropdown from './TagDropdown';
+import { transactionContext } from '../../pages/Transactions';
 
 type amountType = {
     amount: string;
@@ -15,6 +16,9 @@ const EditTransactions = () => {
         amount: '',
         notes: '',
     });
+
+    //context
+    const context = useContext(transactionContext);
 
     //handle options for dropdown
     const [option, setOption] = useState('');
@@ -87,8 +91,43 @@ const EditTransactions = () => {
             console.log(addTransactionParsed);
             return alert('Sorry, something went wrong.');
         }
-        //reload window to update UI information
-        window.location.reload();
+
+        //update information without reloading
+
+        //update balance information on UI
+        context?.setBalance(addTransactionParsed.newBalance);
+
+        //update logs information
+        context?.setTransactionLogs((prev) => {
+            //create date
+            const dateNow = new Date().toLocaleString('en-GB', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+            });
+            let newArr = [...prev];
+            //adding index of element in
+            for (let i = 0; i < newArr.length; i++) {
+                if (newArr[i][0].created_at === dateNow) {
+                    newArr[i] = [
+                        {
+                            id: addTransactionParsed.logId,
+                            created_at: dateNow,
+                            value: num,
+                            notes: amount.notes,
+                            tag: option,
+                        },
+                        ...newArr[i],
+                    ];
+                    break;
+                }
+            }
+            //reset input elements
+            setAmount({ amount: '', notes: '' });
+            setOption('');
+            return newArr;
+        });
     };
 
     return (

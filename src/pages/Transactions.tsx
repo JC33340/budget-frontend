@@ -1,7 +1,13 @@
 import EditTransactions from '../components/transactions/EditTransactions';
 import OverallBalance from '../components/transactions/OverallBalance';
 import TransactionLog from '../components/transactions/TransactionLog';
-import { useEffect, useState, createContext } from 'react';
+import {
+    useEffect,
+    useState,
+    createContext,
+    SetStateAction,
+    Dispatch,
+} from 'react';
 
 type transactionLogsType = {
     value: number;
@@ -9,12 +15,13 @@ type transactionLogsType = {
     created_at: string;
     notes: string;
     id: number;
-    display_id: number;
 };
 
 type transactionContextType = {
     balance: number;
     transactionLogs: transactionLogsType[][];
+    setBalance: Dispatch<SetStateAction<number>>;
+    setTransactionLogs: Dispatch<SetStateAction<transactionLogsType[][]>>;
 } | null;
 
 export const transactionContext = createContext<transactionContextType>(null);
@@ -59,6 +66,8 @@ const Transactions = () => {
             value={{
                 balance: balance,
                 transactionLogs: transactionLogs,
+                setBalance: setBalance,
+                setTransactionLogs: setTransactionLogs,
             }}
         >
             <div className="flex flex-col items-center gap-y-4">

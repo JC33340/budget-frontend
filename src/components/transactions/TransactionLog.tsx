@@ -32,8 +32,15 @@ const TransactionLog = () => {
             return alert('Sorry, something went wrong');
         }
 
-        //reload window to update information
-        window.location.reload();
+        //update information without reloading window
+        context?.setTransactionLogs((prev) => {
+            let newArr = [...prev];
+            //filter out the item in the array via the id
+            for (let i = 0; i < newArr.length; i++) {
+                newArr[i] = newArr[i].filter((item) => item.id != id);
+            }
+            return newArr;
+        });
     };
 
     return (
@@ -43,8 +50,7 @@ const TransactionLog = () => {
                     Transactions log
                 </p>
                 <div className="flex flex-col w-full">
-                    <div className="grid grid-cols-[100px_1fr_1fr_1fr] border-b-2 border-dark-gray text-center">
-                        <p className="border-r-2 border-dark-gray">ID</p>
+                    <div className="grid grid-cols-3 border-b-2 border-dark-gray text-center">
                         <p className="border-r-2 border-dark-gray">Amount</p>
                         <p className="border-r-2 border-dark-gray">Tag</p>
                         <p>Notes</p>
@@ -59,11 +65,8 @@ const TransactionLog = () => {
                                     return (
                                         <div
                                             key={j}
-                                            className={`grid group grid-cols-[100px_1fr_1fr_1fr] relative border-b-1 border-dark-gray ${j % 2 === 0 ? 'bg-white' : 'bg-lighter-gray'}`}
+                                            className={`grid group grid-cols-3 relative border-b-1 border-dark-gray ${j % 2 === 0 ? 'bg-white' : 'bg-lighter-gray'}`}
                                         >
-                                            <p className="border-r-2 border-dark-gray flex items-center justify-center p-2">
-                                                {row.display_id}
-                                            </p>
                                             <p
                                                 className={`border-r-2 border-dark-gray text-xl font-medium flex items-center justify-center p-2 ${row.value < 0 ? 'text-red' : 'text-green'}`}
                                             >
