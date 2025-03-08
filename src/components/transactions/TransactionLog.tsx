@@ -110,7 +110,7 @@ const TransactionLog = () => {
                         />
                     </div>
                 </div>
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full max-h-100 overflow-y-scroll">
                     <div className="grid grid-cols-3 border-b-2 border-dark-gray text-center font-medium">
                         <p className="border-r-2 border-dark-gray">Amount</p>
                         <p className="border-r-2 border-dark-gray">Tag</p>
@@ -120,7 +120,7 @@ const TransactionLog = () => {
                         return (
                             <div key={i}>
                                 {item.length > 0 && (
-                                    <div className="flex bg-light-gray font-medium text-white items-end justify-end rounded-sm py-1 px-2">
+                                    <div className="flex bg-light-gray font-medium text-white items-end justify-end rounded-md py-1 px-2">
                                         <p>{item[0].created_at}</p>
                                     </div>
                                 )}
@@ -128,7 +128,7 @@ const TransactionLog = () => {
                                     return (
                                         <div
                                             key={j}
-                                            className={`grid group grid-cols-3 relative border-b-1 border-dark-gray ${j % 2 === 0 ? 'bg-white' : 'bg-lighter-gray'}`}
+                                            className={`grid group grid-cols-3 relative border-b-1 border-dark-gray rounded-md ${j % 2 === 0 ? 'bg-white' : 'bg-lighter-gray'}`}
                                         >
                                             <p
                                                 className={`border-r-2 border-dark-gray text-xl font-medium flex items-center justify-center p-2 ${row.value < 0 ? 'text-red' : 'text-green'}`}

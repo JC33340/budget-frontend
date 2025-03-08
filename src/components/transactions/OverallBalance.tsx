@@ -9,7 +9,7 @@ const OverallBalance = () => {
     const balance = context === null ? 0 : context.balance;
     return (
         <ItemWrapper>
-            <div className="flex flex-col items-center justify-start gap-y-4 h-full">
+            <div className="flex flex-col items-center justify-start gap-y-4 h-full min-h-full ">
                 <p className="text-3xl text-blue font-medium">Balance:</p>
                 <div className="flex items-center justify-center h-full">
                     <p
