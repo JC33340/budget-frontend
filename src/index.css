@@ -30,4 +30,28 @@
     --color-green: #50c878;
 
     --font-roboto-flex: 'Roboto Flex', serif;
+
+    --animate-enter-right: enterRight 1s ease-in-out;
+    @keyframes enterRight {
+        0% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        ,
+        100% {
+            opacity: 1;
+        }
+    }
+
+    --animate-enter-left: enterLeft 1s ease-in-out;
+    @keyframes enterLeft {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        ,
+        100% {
+            opacity: 1;
+        }
+    }
 }
