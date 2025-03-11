@@ -51,6 +51,9 @@ const Transactions = () => {
                     }
                 );
                 const fetchInfoParsed = await fetchInfo.json();
+                if (!fetchInfo.ok) {
+                    console.log(fetchInfoParsed);
+                }
                 setBalance(fetchInfoParsed.overall_balance);
                 setTransactionLogs(fetchInfoParsed.transaction_logs);
             } catch (e) {

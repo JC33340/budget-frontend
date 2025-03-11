@@ -19,7 +19,6 @@ const HomePage = () => {
         const fetchInfo = async () => {
             //get jwt
             const jwt = localStorage.getItem('budgeter_jwt');
-
             const homePageInfo = await fetch(
                 `${import.meta.env.VITE_API}/homepage/page-info`,
                 {
@@ -29,10 +28,8 @@ const HomePage = () => {
                 }
             );
             const homePageInfoParsed = await homePageInfo.json();
-            //error handling
             if (!homePageInfo.ok) {
                 console.log(homePageInfoParsed);
-                return alert('Something went wrong!');
             }
             setInfo(homePageInfoParsed);
         };

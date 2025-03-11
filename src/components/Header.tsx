@@ -10,8 +10,6 @@ const Header = () => {
             </Link>
             <div className="hidden md:flex items-center gap-x-6">
                 <HeaderButton href="/transactions" text="Transactions" />
-                <HeaderButton href="/reports" text="Reports" />
-                <HeaderButton href="/settings" text="Settings" />
                 <button
                     className="text-white bg-dark-red p-2 rounded-md font-semibold cursor-pointer"
                     onClick={() => {
