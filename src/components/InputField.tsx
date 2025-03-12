@@ -23,7 +23,7 @@ const InputField = ({
         <div className="flex flex-col">
             <label className="text-dark-gray">{placeholder}:</label>
             <input
-                className={`w-30 sm:w-80 border-1 border-dark-gray rounded-md p-2 ${className}`}
+                className={`w-full border-1 border-dark-gray rounded-md p-2 ${className}`}
                 placeholder={placeholder}
                 onChange={handleChange}
                 value={value}

@@ -99,15 +99,22 @@ const TransactionLog = () => {
                     <p className="text-blue text-2xl h-full font-medium">
                         Filter:
                     </p>
-                    <div className="flex items-end gap-x-4">
-                        <TagDropdown option={option} setOption={setOption} />
-                        <InputField
-                            placeholder="Notes"
-                            type="notes"
-                            value={notes}
-                            name="notes"
-                            handleChange={handleChange}
-                        />
+                    <div className="w-60 sm:w-80 md:w-100">
+                        <div className="flex items-end gap-x-4 ">
+                            <TagDropdown
+                                option={option}
+                                setOption={setOption}
+                            />
+                            <div className="w-full">
+                                <InputField
+                                    placeholder="Notes"
+                                    type="notes"
+                                    value={notes}
+                                    name="notes"
+                                    handleChange={handleChange}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col w-full max-h-100 overflow-y-scroll">
@@ -135,7 +142,7 @@ const TransactionLog = () => {
                                             >
                                                 {row.value}
                                             </p>
-                                            <p className="border-r-2 border-dark-gray flex items-center justify-center p-2 capitalize">
+                                            <p className="text-sm sm:text-md border-r-2 border-dark-gray flex items-center justify-center p-2 capitalize">
                                                 {row.tag}
                                             </p>
                                             <p className="p-2 flex items-center justify-start">

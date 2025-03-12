@@ -84,24 +84,26 @@ const ResetPassword = () => {
     return (
         <>
             {!isReset ? (
-                <div className="flex flex-col gap-y-4 items-center">
+                <div className="flex flex-col gap-y-4 items-center w-full">
                     <p className="text-2xl text-blue font-semibold">
                         Reset Password
                     </p>
-                    <InputField
-                        placeholder="Password"
-                        value={formInfo.password}
-                        handleChange={onChange}
-                        name="password"
-                        type="password"
-                    />
-                    <InputField
-                        placeholder="Password Confirmation"
-                        value={formInfo.passwordConfirmation}
-                        handleChange={onChange}
-                        name="passwordConfirmation"
-                        type="password"
-                    />
+                    <div className='flex flex-col w-full gap-y-4'>
+                        <InputField
+                            placeholder="Password"
+                            value={formInfo.password}
+                            handleChange={onChange}
+                            name="password"
+                            type="password"
+                        />
+                        <InputField
+                            placeholder="Password Confirmation"
+                            value={formInfo.passwordConfirmation}
+                            handleChange={onChange}
+                            name="passwordConfirmation"
+                            type="password"
+                        />
+                    </div>
                     {error && <p className="text-red">* {error} *</p>}
                     <Button
                         text="Reset password"

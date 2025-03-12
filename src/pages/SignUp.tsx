@@ -76,9 +76,9 @@ const SignUp = () => {
     };
 
     return (
-        <div className="flex flex-col items-center gap-y-4">
+        <div className="flex flex-col items-center gap-y-4 w-full">
             <p className="text-blue text-2xl font-semibold">Sign up</p>
-            <div className="flex flex-col gap-y-4">
+            <div className="flex flex-col gap-y-2 sm:gap-y-4 w-full">
                 <InputField
                     placeholder="E-mail"
                     name="email"

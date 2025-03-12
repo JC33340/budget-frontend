@@ -73,12 +73,15 @@ const ForgotPassword = () => {
                     <p className="text-blue font-semibold text-2xl">
                         Forgotten password
                     </p>
-                    <InputField
-                        placeholder="Email"
-                        value={email.email}
-                        name="email"
-                        handleChange={handleChange}
-                    />
+                    <div className='w-full'>
+                        <InputField
+                            placeholder="Email"
+                            value={email.email}
+                            name="email"
+                            handleChange={handleChange}
+                        />
+                    </div>
+
                     <p className="text-dark-gray">
                         We will send a password reset link to this email
                     </p>
