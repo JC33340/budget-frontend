@@ -67,21 +67,24 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col gap-y-4 items-center">
+        <div className="flex flex-col gap-y-4 items-center w-full">
             <span className="text-blue font-semibold text-2xl">Log in</span>
-            <InputField
-                placeholder="E-mail"
-                value={loginInfo.email}
-                name="email"
-                handleChange={handleChange}
-            ></InputField>
-            <InputField
-                placeholder="Password"
-                value={loginInfo.password}
-                name="password"
-                handleChange={handleChange}
-                type="password"
-            ></InputField>
+            <div className='flex flex-col gap-y-4 w-full'>
+                <InputField
+                    placeholder="E-mail"
+                    value={loginInfo.email}
+                    name="email"
+                    handleChange={handleChange}
+                ></InputField>
+                <InputField
+                    placeholder="Password"
+                    value={loginInfo.password}
+                    name="password"
+                    handleChange={handleChange}
+                    type="password"
+                ></InputField>
+            </div>
+
             {error && <p className="text-red">* {error} *</p>}
             <Button
                 text="Login"

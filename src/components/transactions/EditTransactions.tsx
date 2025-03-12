@@ -147,31 +147,35 @@ const EditTransactions = () => {
                 <p className="text-3xl text-blue font-medium text-center w-full">
                     Add Transaction
                 </p>
-                <div className="flex flex-col sm:flex-row gap-x-4 gap-y-4 items-start sm:items-end justify-start w-full">
-                    <div className="flex gap-x-4 items-end ">
-                        <InputField
-                            placeholder="Amount"
-                            value={amount.amount}
-                            name="amount"
-                            handleChange={handleChange}
-                            className={`${Number(amount.amount) > 0 ? 'text-green' : Number(amount.amount) < 0 ? 'text-red' : 'text-black'} w-40`}
-                        />
+                <div className="flex flex-col sm:flex-row gap-x-4 gap-y-4 items-start sm:items-end justify-start w-full ">
+                    <div className="flex gap-x-4 items-end w-full ">
+                        <div className=" w-full">
+                            <InputField
+                                placeholder="Amount"
+                                value={amount.amount}
+                                name="amount"
+                                handleChange={handleChange}
+                                className={`${Number(amount.amount) > 0 ? 'text-green' : Number(amount.amount) < 0 ? 'text-red' : 'text-black'}`}
+                            />
+                        </div>
                         <TagDropdown option={option} setOption={setOption} />
                     </div>
                     <Button
                         text="Add transcation"
-                        className="w-full sm:w-fit"
+                        className="w-full whitespace-nowrap"
                         handleClick={handleClick}
                     />
                 </div>
-                <InputField
-                    name="notes"
-                    placeholder="Notes"
-                    handleChange={handleChange}
-                    value={amount.notes}
-                    className="w-60 sm:w-100"
-                    maxLength={50}
-                />
+                <div className='w-full'>
+                    <InputField
+                        name="notes"
+                        placeholder="Notes"
+                        handleChange={handleChange}
+                        value={amount.notes}
+                        className=""
+                        maxLength={50}
+                    />
+                </div>
             </div>
         </ItemWrapper>
     );
