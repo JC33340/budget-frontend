@@ -1,4 +1,4 @@
-# **Budgeter App**
+# **Budgeter App Frontend**
  
  A simple budgeting app to track income and expenses
 
