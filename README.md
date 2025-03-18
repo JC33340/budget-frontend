@@ -39,7 +39,7 @@
 1. Clone the repo
 
     ```
-    git clone https://github.com/JC33340/budget-frontend
+    git clone https://github.com/JC33340/budget-frontend.git
     cd budget-frontend
     ```
 
