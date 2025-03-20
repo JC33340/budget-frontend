@@ -26,13 +26,12 @@ const AuthLayout = () => {
             if (!result.ok) {
                 return alert('Sorry something went wrong');
             }
-            const result_parsed = await result.json();
-            console.log(result_parsed);
-            setDbActive(true);
+            alert('wakedb ran')
+            //setDbActive(true);
         };
 
-        wakedb();
         checkToken();
+        wakedb();
     }, []);
 
     return (
@@ -76,6 +75,7 @@ const AuthLayout = () => {
                         <div className="flex flex-col gap-y-4 items-center">
                             <p className="font-semibold text-dark-gray">
                                 Loading
+                                <p>{dbActive?'true':'false'}</p>
                             </p>
                             <AiOutlineLoading3Quarters
                                 className="animate-spin fill-dark-gray"
