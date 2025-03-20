@@ -22,7 +22,7 @@ const AuthLayout = () => {
         };
 
         const wakedb = async () => {
-            const result = await fetch(`${import.meta.env.VITE_API}/pingdb`);
+            const result = await fetch(`${import.meta.env.VITE_API}/wakedb`);
             if (!result.ok) {
                 return alert('Sorry something went wrong');
             }

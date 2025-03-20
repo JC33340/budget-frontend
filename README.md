@@ -1,40 +1,40 @@
 # **Budgeter App Frontend**
- 
- A simple budgeting app to track income and expenses
+
+A simple budgeting app to track income and expenses
 
 ## **Features**
 
-- **Expense & Income Visualisation** - View your financial trends using charts.
+-   **Expense & Income Visualisation** - View your financial trends using charts.
 
-- **Weekly Summaries** - Get a breakdown of your weekly spending habits.
+-   **Weekly Summaries** - Get a breakdown of your weekly spending habits.
 
-- **Add & Remove Transactions** - To easily manage and categorise financial records.
+-   **Add & Remove Transactions** - To easily manage and categorise financial records.
 
-- **Transaction filtering** - Quickly find specific transactions based on tags and notes.
+-   **Transaction filtering** - Quickly find specific transactions based on tags and notes.
 
- ## **Tech stack**
+## **Tech stack**
 
- - **Frontend:** React, TailwindCSS, TypeScript
+-   **Frontend:** React, TailwindCSS, TypeScript
 
- - **Frontend Libraries:** chart.js, react-icons
+-   **Frontend Libraries:** chart.js, react-icons
 
- - **Code formating:** prettier
+-   **Code formating:** prettier
 
- - **Backend:** Connected to a separate repo [here](https://github.com/JC33340/budget-backend)
+-   **Backend:** Connected to a separate repo [here](https://github.com/JC33340/budget-backend)
 
- - **Deployment:** Deployed on Railway [here](https://budget-frontend-production.up.railway.app)
+-   **Deployment:** Deployed on Railway [here](https://budget-frontend-production.up.railway.app)
 
 ## **File structure**
 
 ```
 /src
-  ├── components/ # Page components     
-  ├── pages/      # Page layouts      
+  ├── components/ # Page components
+  ├── pages/      # Page layouts
   ├── utils/      # Utility functions and helpers
   ├── types/      # TypeScript interfaces and types
 ```
 
- ## **Installation and setup**
+## **Installation and setup**
 
 1. Clone the repo
 

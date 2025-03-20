@@ -90,7 +90,7 @@ const EditTransactions = () => {
         if (!addTransaction.ok) {
             console.log(addTransactionParsed);
             //if action is unauthorized reload window
-            if(addTransaction.status===401){
+            if (addTransaction.status === 401) {
                 return window.location.reload();
             }
             return alert('Sorry, something went wrong.');
@@ -170,7 +170,7 @@ const EditTransactions = () => {
                         handleClick={handleClick}
                     />
                 </div>
-                <div className='w-full'>
+                <div className="w-full">
                     <InputField
                         name="notes"
                         placeholder="Notes"

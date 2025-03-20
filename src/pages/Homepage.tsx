@@ -39,7 +39,7 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col gap-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4"> 
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4">
                 <SpendingBreakdown categoryBreakdown={info?.category} />
                 <div className="flex flex-col h-full gap-y-4">
                     <TotalBalance balance={info?.balance} />
