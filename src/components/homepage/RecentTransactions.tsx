@@ -26,6 +26,7 @@ const RecentTransactions = ({ recentTransactions }: RecentTransactionsType) => {
                         recentTransactions?.map((item, i) => {
                             return (
                                 <RecentTransactionsItem
+                                    key={i}
                                     transactionLog={item}
                                     color={i % 2 === 0 ? '' : 'bg-light-gray'}
                                 />

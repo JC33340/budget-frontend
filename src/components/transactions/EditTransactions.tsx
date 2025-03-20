@@ -89,6 +89,10 @@ const EditTransactions = () => {
         //error handling
         if (!addTransaction.ok) {
             console.log(addTransactionParsed);
+            //if action is unauthorized reload window
+            if(addTransaction.status===401){
+                return window.location.reload();
+            }
             return alert('Sorry, something went wrong.');
         }
 
