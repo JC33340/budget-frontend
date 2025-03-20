@@ -88,7 +88,7 @@ const ResetPassword = () => {
                     <p className="text-2xl text-blue font-semibold">
                         Reset Password
                     </p>
-                    <div className='flex flex-col w-full gap-y-4'>
+                    <div className="flex flex-col w-full gap-y-4">
                         <InputField
                             placeholder="Password"
                             value={formInfo.password}

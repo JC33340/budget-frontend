@@ -69,7 +69,7 @@ const Login = () => {
     return (
         <div className="flex flex-col gap-y-4 items-center w-full">
             <span className="text-blue font-semibold text-2xl">Log in</span>
-            <div className='flex flex-col gap-y-4 w-full'>
+            <div className="flex flex-col gap-y-4 w-full">
                 <InputField
                     placeholder="E-mail"
                     value={loginInfo.email}

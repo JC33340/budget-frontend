@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                     <p className="text-blue font-semibold text-2xl">
                         Forgotten password
                     </p>
-                    <div className='w-full'>
+                    <div className="w-full">
                         <InputField
                             placeholder="Email"
                             value={email.email}
