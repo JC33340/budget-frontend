@@ -27,7 +27,7 @@ const AuthLayout = () => {
                 return alert('Sorry something went wrong');
             }
             alert('wakedb ran')
-            //setDbActive(true);
+            setDbActive(true);
         };
 
         checkToken();
