@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { validateToken } from '../utils/auth.utils';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+//import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const AuthLayout = () => {
     const navigate = useNavigate();
-
-    const [dbActive, setDbActive] = useState(false);
 
     useEffect(() => {
         const jwt = localStorage.getItem('budgeter_jwt');
@@ -20,18 +18,7 @@ const AuthLayout = () => {
                 return navigate('/');
             }
         };
-
-        const wakedb = async () => {
-            const result = await fetch(`${import.meta.env.VITE_API}/wakedb`);
-            if (!result.ok) {
-                return alert('Sorry something went wrong');
-            }
-            alert('wakedb ran')
-            setDbActive(true);
-        };
-
         checkToken();
-        wakedb();
     }, []);
 
     return (
@@ -69,20 +56,15 @@ const AuthLayout = () => {
                 }}
             >
                 <div className="flex flex-col gap-y-4 items-center border-2 border-light-blue rounded-lg p-6 w-70 sm:w-90">
-                    {dbActive ? (
-                        <Outlet />
-                    ) : (
-                        <div className="flex flex-col gap-y-4 items-center">
-                            <p className="font-semibold text-dark-gray">
-                                Loading
-                                <p>{dbActive?'true':'false'}</p>
-                            </p>
-                            <AiOutlineLoading3Quarters
-                                className="animate-spin fill-dark-gray"
-                                size={50}
-                            />
-                        </div>
-                    )}
+                    <Outlet />
+
+                    {/* <div className="flex flex-col gap-y-4 items-center">
+                        <p className="font-semibold text-dark-gray">Loading</p>
+                        <AiOutlineLoading3Quarters
+                            className="animate-spin fill-dark-gray"
+                            size={50}
+                        />
+                    </div> */}
                 </div>
             </div>
         </div>
