@@ -26,6 +26,8 @@ const AuthLayout = () => {
             if (!result.ok) {
                 return alert('Sorry something went wrong');
             }
+            const result_parsed = await result.json();
+            console.log(result_parsed);
             setDbActive(true);
         };
 
