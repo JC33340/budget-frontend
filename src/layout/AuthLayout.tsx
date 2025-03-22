@@ -1,24 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { validateToken } from '../utils/auth.utils';
-//import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const AuthLayout = () => {
     const navigate = useNavigate();
 
+    const [dbActive, setDbActive] = useState(false);
+
     useEffect(() => {
         const jwt = localStorage.getItem('budgeter_jwt');
 
-        //if token does not exist
-        if (!jwt) return;
-
         const checkToken = async () => {
+            //if token does not exist
+            if (!jwt) return;
+            console.log(jwt)
+
             const isValid = await validateToken(jwt);
             if (isValid) {
                 return navigate('/');
             }
         };
+
+        const wakedb = async () => {
+            const result = await fetch(
+                `${import.meta.env.VITE_API}/database/wakedb`
+            );
+            const result_parsed = await result.json();
+            if (!result.ok) {
+                console.log(result_parsed);
+                return alert('server issue');
+            }else{
+                return setDbActive(true)
+            }
+        };
+
         checkToken();
+        wakedb();
     }, []);
 
     return (
@@ -56,15 +74,19 @@ const AuthLayout = () => {
                 }}
             >
                 <div className="flex flex-col gap-y-4 items-center border-2 border-light-blue rounded-lg p-6 w-70 sm:w-90">
-                    <Outlet />
-
-                    {/* <div className="flex flex-col gap-y-4 items-center">
-                        <p className="font-semibold text-dark-gray">Loading</p>
-                        <AiOutlineLoading3Quarters
-                            className="animate-spin fill-dark-gray"
-                            size={50}
-                        />
-                    </div> */}
+                    {dbActive ? (
+                        <Outlet />
+                    ) : (
+                        <div className="flex flex-col gap-y-4 items-center">
+                            <p className="font-semibold text-dark-gray">
+                                Loading
+                            </p>
+                            <AiOutlineLoading3Quarters
+                                className="animate-spin fill-dark-gray"
+                                size={50}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
