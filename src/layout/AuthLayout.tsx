@@ -14,7 +14,7 @@ const AuthLayout = () => {
         const checkToken = async () => {
             //if token does not exist
             if (!jwt) return;
-            console.log(jwt)
+            console.log(jwt);
 
             const isValid = await validateToken(jwt);
             if (isValid) {
@@ -30,8 +30,8 @@ const AuthLayout = () => {
             if (!result.ok) {
                 console.log(result_parsed);
                 return alert('server issue');
-            }else{
-                return setDbActive(true)
+            } else {
+                return setDbActive(true);
             }
         };
 
