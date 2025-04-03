@@ -40,10 +40,10 @@ const AuthLayout = () => {
     }, []);
 
     return (
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-y-8 h-full w-full border-2 border-light-blue rounded-lg overflow-hidden">
-            <div className="absolute top-4 left-4 border-2 bg-white p-2 rounded-lg">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-y-8 h-full w-full border-2 border-light-blue rounded-lg overflow-x-hidden">
+            <div className="absolute top-4 left-4 border-2 bg-white p-2 rounded-lg z-20">
                 <p className="text-blue">Demo account :</p>
-                <div className="text-light-gray">
+                <div className="text-light-gray z-100">
                     <p>Login : demoaccount@demo.com</p>
                     <p>Password : demoaccount123</p>
                 </div>
@@ -54,7 +54,7 @@ const AuthLayout = () => {
                         Budgeter
                     </p>
                     <p
-                        className=" text-center lg:text-start text-light-gray animate-enter-right"
+                        className=" text-center lg:text-start text-light-gray animate-enter-right relative z-1"
                         style={{
                             animationDelay: '0.1s',
                             animationFillMode: 'both',
