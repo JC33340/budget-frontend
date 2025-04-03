@@ -29,7 +29,7 @@ const TransactionLog = () => {
     }, [context?.transactionLogs]);
 
     //delete row
-    const deleteRow = async (id: number) => {
+    const deleteRow = async (id: number, value: number) => {
         //delete row API
         //get jwt
         const localjwt = localStorage.getItem('budgeter_jwt');
@@ -61,6 +61,11 @@ const TransactionLog = () => {
                 newArr[i] = newArr[i].filter((item) => item.id != id);
             }
             return newArr;
+        });
+
+        //updating the overall balance
+        context?.setBalance((prev) => {
+            return prev - value;
         });
     };
 
@@ -152,7 +157,10 @@ const TransactionLog = () => {
                                                 <button
                                                     className="cursor-pointer"
                                                     onClick={() =>
-                                                        deleteRow(row.id)
+                                                        deleteRow(
+                                                            row.id,
+                                                            row.value
+                                                        )
                                                     }
                                                 >
                                                     <FaTrash className="fill-red" />
