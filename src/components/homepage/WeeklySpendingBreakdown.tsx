@@ -2,14 +2,17 @@ import ItemWrapper from '../ItemWrapper';
 import { Pie } from 'react-chartjs-2';
 import ItemHeading from '../ItemHeading';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
-type SpendingBreakdownType = {
-    categoryBreakdown: {} | undefined;
-};
+import type { SpendingBreakdownType } from '../../pages/Homepage';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const SpendingBreakdown = ({ categoryBreakdown }: SpendingBreakdownType) => {
+type WeeklySpendingBreakdownType = {
+    categoryBreakdown: SpendingBreakdownType | undefined;
+};
+
+const WeeklySpendingBreakdown = ({
+    categoryBreakdown,
+}: WeeklySpendingBreakdownType) => {
     //formatting data
     const expenseLabels: string[] = [];
     const expenseSpend: number[] = [];
@@ -17,27 +20,32 @@ const SpendingBreakdown = ({ categoryBreakdown }: SpendingBreakdownType) => {
     const incomeLabels: string[] = [];
     const incomeSpend: number[] = [];
 
-    if (categoryBreakdown) {
-        const categoryArr: [string, number][] =
-            Object.entries(categoryBreakdown);
-        for (let i = 0; i < categoryArr.length; i++) {
-            if (categoryArr[i][0] === '') {
-                categoryArr[i][0] = 'Undefined';
-            }
-            if (categoryArr[i][1] < 0) {
-                expenseLabels.push(
-                    categoryArr[i][0].charAt(0).toUpperCase() +
-                        categoryArr[i][0].slice(1)
-                );
-                expenseSpend.push(categoryArr[i][1]);
+    //formating array, separating the labels and the values for the display
+    const formatCategories = (
+        labels: string[],
+        values: number[],
+        arr: [string, number][]
+    ) => {
+        for (let item of arr) {
+            if (item[0] === '') {
+                labels.push('Undefined');
             } else {
-                incomeLabels.push(
-                    categoryArr[i][0].charAt(0).toUpperCase() +
-                        categoryArr[i][0].slice(1)
-                );
-                incomeSpend.push(categoryArr[i][1]);
+                const name = item[0].charAt(0).toUpperCase() + item[0].slice(1);
+                labels.push(name);
             }
+            values.push(item[1]);
         }
+    };
+
+    if (categoryBreakdown) {
+        //income
+        formatCategories(incomeLabels, incomeSpend, categoryBreakdown.income);
+        //expenses
+        formatCategories(
+            expenseLabels,
+            expenseSpend,
+            categoryBreakdown.expense
+        );
     }
 
     const backgroundColor = [
@@ -96,7 +104,7 @@ const SpendingBreakdown = ({ categoryBreakdown }: SpendingBreakdownType) => {
     return (
         <ItemWrapper>
             <div className="flex flex-col gap-y-4 items-center">
-                <ItemHeading text="Spending breakdown" />
+                <ItemHeading text="Weekly Spending breakdown" />
                 <div className=" h-fit w-70 sm:w-85 lg:w-100 xl:w-full flex flex-col md:flex-row gap-y-4 items-center justify-center gap-x-8 ">
                     <div className="h-full w-full flex flex-col items-center gap-y-4 justify-start">
                         <ItemHeading text="Expense" size="sm" />
@@ -148,4 +156,4 @@ const SpendingBreakdown = ({ categoryBreakdown }: SpendingBreakdownType) => {
     );
 };
 
-export default SpendingBreakdown;
+export default WeeklySpendingBreakdown;
