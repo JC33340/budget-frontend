@@ -12,14 +12,19 @@ const HeaderDropdown = () => {
     ];
 
     return (
-        <div className="flex md:hidden relative">
+        <div
+            className="flex md:hidden relative"
+            data-testid="headerDropdown-testid"
+        >
             <IoIosMenu
                 className="fill-white cursor-pointer"
                 size={40}
                 onClick={() => setHidden((prev) => !prev)}
+                data-testid="dropdownButton-testid"
             />
             <div
                 className={`absolute ${hidden ? 'hidden' : 'flex'} flex-col right-0 bottom-[-190px] rounded-lg border-4 overflow-hidden border-dark-gray`}
+                data-testid="dropdownContent-testid"
             >
                 {options.map((item, i) => {
                     return (

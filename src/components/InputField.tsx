@@ -1,8 +1,8 @@
-import React from 'react';
+import { ChangeEvent } from 'react';
 
 type InputFieldType = {
     placeholder: string;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
     value: string | number | undefined;
     className?: string;
     name: string;
@@ -20,7 +20,7 @@ const InputField = ({
     maxLength,
 }: InputFieldType) => {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col" data-testid="inputField-testid">
             <label className="text-dark-gray">{placeholder}:</label>
             <input
                 className={`w-full border-1 border-dark-gray rounded-md p-2 ${className}`}
@@ -30,6 +30,7 @@ const InputField = ({
                 name={name}
                 type={type}
                 maxLength={maxLength}
+                data-testid="inputElement-testid"
             ></input>
         </div>
     );

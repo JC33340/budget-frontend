@@ -15,6 +15,7 @@ const HeaderButton = ({ href, text }: HeaderButtonType) => {
                 isActive ? `${css} bg-white text-blue` : `${css} text-white`
             }
             to={href}
+            data-testid="headerButton-testid"
         >
             {text}
         </NavLink>

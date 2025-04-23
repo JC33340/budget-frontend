@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<a
+  class="text-lg font-semibold p-2 rounded-md hover:bg-white hover:text-blue transition-all ease-in-out  text-white"
+  data-testid="headerButton-testid"
+  href="/test-href"
+>
+  test-text
+</a>
+`;
