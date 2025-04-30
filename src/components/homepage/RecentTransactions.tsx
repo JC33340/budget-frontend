@@ -10,7 +10,10 @@ type RecentTransactionsType = {
 const RecentTransactions = ({ recentTransactions }: RecentTransactionsType) => {
     return (
         <ItemWrapper>
-            <div className=" flex flex-col gap-y-4">
+            <div
+                className=" flex flex-col gap-y-4"
+                data-testid="recentTransactions-testid"
+            >
                 <ItemHeading text="Recent Transactions" />
                 <div className="h-60 overflow-y-scroll">
                     <div className="grid grid-cols-3 text-lg border-b-2 border-light-gray">
