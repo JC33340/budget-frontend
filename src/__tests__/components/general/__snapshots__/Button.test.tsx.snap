@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<button
+  class="p-2 border-2 border-blue rounded-md bg-blue text-white hover:bg-white hover:text-blue transition-all ease-in-out undefined"
+  data-testid="button-testid"
+>
+  test
+</button>
+`;

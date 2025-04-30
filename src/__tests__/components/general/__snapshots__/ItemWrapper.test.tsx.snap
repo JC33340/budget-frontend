@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<div
+  class="border-2 border-light-gray p-4 rounded-lg w-full h-full"
+  data-testid="itemWrapper-testid"
+>
+  <p>
+    test text
+  </p>
+</div>
+`;

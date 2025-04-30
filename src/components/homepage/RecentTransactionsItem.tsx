@@ -18,7 +18,10 @@ const RecentTransactionsItem = ({
         }
     );
     return (
-        <div className={`${color} grid grid-cols-3 rounded-lg`}>
+        <div
+            className={`${color} grid grid-cols-3 rounded-lg`}
+            data-testid="recentTransactionsItem-testid"
+        >
             <p className="flex items-center p-2 border-r-2 border-lighter-gray">
                 {transactionLog.value}
             </p>

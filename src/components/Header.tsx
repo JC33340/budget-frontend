@@ -4,7 +4,10 @@ import HeaderDropdown from './HeaderDropdown';
 
 const Header = () => {
     return (
-        <header className="bg-blue rounded-xl p-4 py-4 flex items-center justify-between">
+        <header
+            className="bg-blue rounded-xl p-4 py-4 flex items-center justify-between"
+            data-testid="header-testid"
+        >
             <Link to="/">
                 <p className="text-white text-2xl font-semibold">Budgeter</p>
             </Link>

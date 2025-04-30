@@ -8,7 +8,10 @@ type OverallBalanceType = {
 const TotalBalance = ({ balance }: OverallBalanceType) => {
     return (
         <ItemWrapper>
-            <div className="flex flex-col gap-y-4 h-full">
+            <div
+                className="flex flex-col gap-y-4 h-full"
+                data-testid="totalBalance-testid"
+            >
                 <ItemHeading text="Overall balance" />
                 <div className="flex h-full items-center justify-center">
                     <p

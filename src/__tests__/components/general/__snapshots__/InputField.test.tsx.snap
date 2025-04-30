@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<div
+  class="flex flex-col"
+  data-testid="inputField-testid"
+>
+  <label
+    class="text-dark-gray"
+  >
+    test-text
+    :
+  </label>
+  <input
+    class="w-full border-1 border-dark-gray rounded-md p-2 undefined"
+    data-testid="inputElement-testid"
+    name="test-name"
+    placeholder="test-text"
+    type=""
+    value="test-text"
+  />
+</div>
+`;

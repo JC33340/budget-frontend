@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<div
+  class=" grid grid-cols-3 rounded-lg"
+  data-testid="recentTransactionsItem-testid"
+>
+  <p
+    class="flex items-center p-2 border-r-2 border-lighter-gray"
+  >
+    100
+  </p>
+  <p
+    class="flex items-center capitalize p-2 border-r-2 border-lighter-gray"
+  >
+    test tag
+  </p>
+  <p
+    class="flex items-center p-2"
+  >
+    16 Jan 2025
+  </p>
+</div>
+`;

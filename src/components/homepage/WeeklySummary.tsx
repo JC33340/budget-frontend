@@ -84,7 +84,7 @@ const WeeklySummary = ({ arr }: WeeklySummaryType) => {
 
     return (
         <ItemWrapper>
-            <div className="h-fit">
+            <div className="h-fit" data-testid="weeklySummary-testid">
                 <ItemHeading text="Weekly Summary" />
                 <div className="h-100">
                     <Bar
