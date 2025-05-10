@@ -75,8 +75,10 @@ const Transactions = () => {
         >
             <div className="flex flex-col items-center gap-y-4">
                 <div className="w-full flex flex-col gap-y-8 items-center">
-                    <div className="flex flex-col gap-y-8 lg:flex-row gap-x-8 w-full">
-                        <OverallBalance />
+                    <div className="flex flex-col gap-y-8 lg:flex-row gap-x-8 w-full h-full">
+                        <div className="w-full">
+                            <OverallBalance />
+                        </div>
                         <EditTransactions />
                     </div>
                     <TransactionLog />
