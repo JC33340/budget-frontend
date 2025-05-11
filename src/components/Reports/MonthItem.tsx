@@ -19,7 +19,10 @@ const MonthItem = ({ item }: MonthItemType) => {
         }
     });
     return (
-        <div className="p-2 border-2 border-dark-gray rounded-md w-full whitespace-nowrap">
+        <div
+            className="p-2 border-2 border-dark-gray rounded-md w-full whitespace-nowrap"
+            data-testid="monthItem-testid"
+        >
             <p className="text-center font-semibold underline text-lg">
                 {date.toLocaleDateString('en-GB', { month: 'long' })}{' '}
                 <span>({item.year})</span>
