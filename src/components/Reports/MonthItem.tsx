@@ -7,7 +7,7 @@ type MonthItemType = {
 const MonthItem = ({ item }: MonthItemType) => {
     //convert number date to string
     const date = new Date();
-    date.setMonth(item.month);
+    date.setMonth(item.month - 1);
     date.setFullYear(item.year);
     let categories: [string, number][] = Object.entries(item.categories);
     //sort categories by value
