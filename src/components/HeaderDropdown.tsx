@@ -8,7 +8,6 @@ const HeaderDropdown = () => {
     const options = [
         { name: 'Transactions', href: '/transactions' },
         { name: 'Reports', href: '/reports' },
-        { name: 'Settings', href: '/settings' },
     ];
 
     return (

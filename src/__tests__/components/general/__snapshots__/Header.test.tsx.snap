@@ -24,6 +24,13 @@ exports[`snapshot test 1`] = `
     >
       Transactions
     </a>
+    <a
+      class="text-lg font-semibold p-2 rounded-md hover:bg-white hover:text-blue transition-all ease-in-out  text-white"
+      data-testid="headerButton-testid"
+      href="/reports"
+    >
+      Reports
+    </a>
     <button
       class="text-white bg-dark-red p-2 rounded-md font-semibold cursor-pointer"
     >
@@ -64,12 +71,6 @@ exports[`snapshot test 1`] = `
         href="/reports"
       >
         Reports
-      </a>
-      <a
-        class="cursor-pointer border-b-2 bg-white p-2 text-lg text-blue font-semibold hover:bg-blue hover:text-white transition-colors ease-in-out"
-        href="/settings"
-      >
-        Settings
       </a>
       <button
         class="cursor-pointer bg-dark-red p-2 text-lg text-white font-semibold"

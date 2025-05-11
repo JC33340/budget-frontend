@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `
+<div
+  class="p-2 border-2 border-dark-gray rounded-md w-full whitespace-nowrap"
+  data-testid="monthItem-testid"
+>
+  <p
+    class="text-center font-semibold underline text-lg"
+  >
+    December
+     
+    <span>
+      (
+      2025
+      )
+    </span>
+  </p>
+  <p>
+    <span
+      class="font-semibold"
+    >
+      Total Balance:
+    </span>
+     
+    <span>
+      999
+    </span>
+  </p>
+  <p
+    class="text-green"
+  >
+    <span
+      class="font-semibold"
+    >
+      Income:
+    </span>
+     
+    <span>
+      39
+    </span>
+  </p>
+  <p
+    class="text-red"
+  >
+    <span
+      class="font-semibold"
+    >
+      Expense:
+    </span>
+     
+    <span>
+      56
+    </span>
+  </p>
+  <div>
+    <p
+      class="font-semibold"
+    >
+      Category Breakdown:
+    </p>
+    <div
+      class="max-h-[5rem] overflow-y-scroll border-1 border-light-gray px-2 py-1 rounded-md"
+    >
+      <div
+        class="capitalize"
+      >
+        testCat
+        : 
+        790
+      </div>
+    </div>
+  </div>
+</div>
+`;

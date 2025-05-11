@@ -36,12 +36,6 @@ exports[`snapshot test 1`] = `
     >
       Reports
     </a>
-    <a
-      class="cursor-pointer border-b-2 bg-white p-2 text-lg text-blue font-semibold hover:bg-blue hover:text-white transition-colors ease-in-out"
-      href="/settings"
-    >
-      Settings
-    </a>
     <button
       class="cursor-pointer bg-dark-red p-2 text-lg text-white font-semibold"
     >
